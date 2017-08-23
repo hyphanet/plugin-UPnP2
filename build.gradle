@@ -1,6 +1,6 @@
 buildscript {
     dependencies {
-        classpath files('libs/gradle-witness.jar')
+        classpath files('gradle/gradle-witness.jar')
     }
 }
 
