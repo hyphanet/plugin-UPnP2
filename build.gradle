@@ -58,7 +58,7 @@ jar {
         exclude "META-INF/*.DSA"
         exclude "META-INF/*.RSA"
     }
-    preserveFileTimestamps = true
+    preserveFileTimestamps = false
     reproducibleFileOrder = true
     duplicatesStrategy = "exclude"
 }
