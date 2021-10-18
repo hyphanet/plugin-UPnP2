@@ -64,13 +64,17 @@ public class IGDRegistryListener extends PortMappingListener {
 
         Logger.normal(this, "Remote device available: " + device.getDisplayString());
 
-        Service commonService;
-        if ((commonService = discoverCommonService(device)) == null) return;
+        Service commonService = discoverCommonService(device);
+        if (commonService == null) {
+            return;
+        }
 
         serviceManager.addCommonService(commonService);
 
-        Service connectionService;
-        if ((connectionService = discoverConnectionService(device)) == null) return;
+        Service connectionService = discoverConnectionService(device);
+        if (commonService == null) {
+            return;
+        }
 
         serviceManager.addConnectionService(connectionService);
 
