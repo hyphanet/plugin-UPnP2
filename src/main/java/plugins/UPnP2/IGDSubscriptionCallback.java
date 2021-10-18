@@ -53,7 +53,7 @@ class IGDSubscriptionCallback extends SubscriptionCallback {
         });
     }
 
-    private ServiceManager serviceManager;
+    private final ServiceManager serviceManager;
     private int renewalFailedCount = 0;
 
     public IGDSubscriptionCallback(Service connectionService, ServiceManager serviceManager) {
@@ -111,17 +111,17 @@ class IGDSubscriptionCallback extends SubscriptionCallback {
         // booted to true.
         serviceManager.setBooted(true);
 
-        Map values = sub.getCurrentValues();
+        Map<String, StateVariableValue<?>> values = sub.getCurrentValues();
 
-        StateVariableValue externalIPAddress =
-                (StateVariableValue) values.get("ExternalIPAddress");
+        StateVariableValue<?> externalIPAddress =
+                values.get("ExternalIPAddress");
 
         try {
             InetAddress inetAddress = InetAddress.getByName
                     (externalIPAddress.toString());
             if (IPUtil.isValidAddress(inetAddress, false)) {
                 DetectedIP detectedIP = new DetectedIP(inetAddress, DetectedIP.NOT_SUPPORTED);
-                if (!serviceManager.getDetectedIPs().values().contains(detectedIP)) {
+                if (!serviceManager.getDetectedIPs().containsValue(detectedIP)) {
                     Logger.normal(this, "New External IP found: " + externalIPAddress
                             .toString());
                     Logger.normal(this, "For device: " +
