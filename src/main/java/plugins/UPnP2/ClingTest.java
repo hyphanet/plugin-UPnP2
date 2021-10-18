@@ -68,13 +68,16 @@ public class ClingTest {
 					"Remote device available222222: " + device.getDisplayString()
 			);
 
-			Service commonService;
-			if ((commonService = discoverCommonService(device)) == null) return;
-
+			Service commonService = discoverCommonService(device);
+			if (commonService == null) {
+				return;
+			}
 			commonServices.add(commonService);
 
-			Service connectionService;
-			if ((connectionService = discoverConnectionService(device)) == null) return;
+			Service connectionService = discoverConnectionService(device);
+			if (commonService == null) {
+				return;
+			}
 
 			connectionServices.add(connectionService);
 
