@@ -49,17 +49,6 @@ import plugins.UPnP2.actions.GetSpecificPortMappingEntry;
  */
 public class IGDRegistryListener extends PortMappingListener {
 
-    private static volatile boolean logMINOR;
-
-    static {
-        Logger.registerLogThresholdCallback(new LogThresholdCallback() {
-            @Override
-            public void shouldUpdate() {
-                logMINOR = Logger.shouldLog(Logger.LogLevel.MINOR, this);
-            }
-        });
-    }
-
     private ServiceManager serviceManager;
     private UpnpService upnpService;
 
